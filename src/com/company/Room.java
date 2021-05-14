@@ -8,6 +8,17 @@ public abstract class Room {
     private Room west;
     private Room up;
     private Room down;
+    private Interactable interactable;
+    private Exit exit;
+    public boolean isExit = exit.isExit();
+
+    public void setInteractable(Interactable interactable) {
+        this.interactable = interactable;
+    }
+
+    public void setExit(Exit exit) {
+        this.exit = exit;
+    }
 
     public void setNorth(Room north) {
         this.north = north;
@@ -44,8 +55,6 @@ public abstract class Room {
             switch (dir) {
                 case 'n':
                     return north;
-
-
                 case 's':
                     return south;
                 case 'e':
@@ -105,5 +114,13 @@ public abstract class Room {
                 return down != null;
         }
         return false;
+    }
+
+    public String interact() {
+        return interactable.interact();
+    }
+
+    public String exit() {
+        return exit.exit();
     }
 }

@@ -1,8 +1,7 @@
 package com.company;
 
 public class isNotInteractable implements Interactable{
-    @Override
-    public String interact(Player player) {
+    public String interact() {
         return "There is nothing in this room";
     }
 }
