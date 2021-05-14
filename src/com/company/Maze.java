@@ -1,19 +1,23 @@
 package com.company;
 
 public class Maze {
+    private static Maze instance = new Maze();
     private Room currentRoom;
-    private Player player;
+    private RoomFactory roomFactory = new RoomFactory();
     private boolean isFinished = false;
 
-    public Maze(Player player) {
-        this.player = player;
-        Room firstTunnel = new Tunnel("Entrance tunnel");
-        Room basement = new Basement("Basement");
-        Room closet = new Closet("Closet");
-        Room basementSecondRoom = new BasementRoom("Second room in basement");
-        Room bedroom = new Bedroom("West bedroom");
-        Room hallway = new Hallway("Long hallway");
-        Room stairwell = new Stairwell("Stairwell to exit");
+    public static Maze getInstance() {
+        return instance;
+    }
+
+    private Maze() {
+        Room firstTunnel = roomFactory.getRoom("Entrance tunnel", "Tunnel");
+        Room basement = roomFactory.getRoom("Basement", "Basement");
+        Room closet = roomFactory.getRoom("Closet", "Closet");
+        Room basementSecondRoom = roomFactory.getRoom("Second room in basement", "BasementRoom");
+        Room bedroom = roomFactory.getRoom("West bedroom", "Bedroom");
+        Room hallway = roomFactory.getRoom("Long hallway", "Hallway");
+        Room stairwell = roomFactory.getRoom("Stairwell to exit", "Stairwell");
         firstTunnel.setExit(new isNotAnExit());
         firstTunnel.setInteractable(new isLootable());
         firstTunnel.setDown(basement);
@@ -66,14 +70,6 @@ public class Maze {
         }
     }
 
-    public int getPlayerScore() {
-        return player.getScore();
-    }
-
-    public String getPlayerInventory() {
-        return player.getInventory();
-    }
-
     public String getCurrentRoomDescription() {
         return currentRoom.getDescription();
     }
@@ -86,4 +82,3 @@ public class Maze {
         return isFinished;
     }
 }
-

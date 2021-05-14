@@ -10,7 +10,7 @@ public abstract class Room {
     private Room down;
     private Interactable interactable;
     private Exit exit;
-    public boolean isExit = exit.isExit();
+    public boolean isExit;
 
     public void setInteractable(Interactable interactable) {
         this.interactable = interactable;
@@ -18,6 +18,7 @@ public abstract class Room {
 
     public void setExit(Exit exit) {
         this.exit = exit;
+        this.isExit = exit.isExit();
     }
 
     public void setNorth(Room north) {
